@@ -1,12 +1,14 @@
 import React from 'react';
 
-const Todo = ({ onClick, invisible, text }) => (
-   <li className={"element-block"}>
-      <span className={`${invisible ? "invisible" : ""}`}>{text}</span>
-      <button className={`btn btn-outline-secondary deleteOne-button ${invisible ? "invisible" : ""}`}
-              onClick={onClick}>Удалить
-      </button>
-   </li>
+const Todo = ({onClick, done, tenSeconds, done_time, invisible, text, date}) => (
+    <li className={`element-block ${tenSeconds ? "tenSeconds" : ""}`}>
+        <span className={`${invisible ? "invisible" : ""}`}>Текст "{text}"</span>
+        <span className={`date ${invisible ? "invisible" : ""}`}>Время добавления: {date}</span>
+        <span className={`date ${!done ? "invisible" : ""}`}>Время выполнения: {done_time}сек</span>
+        <button className={`btn btn-outline-secondary done-button ${invisible ? "invisible" : ""} ${done ? "invisible" : ""}`}
+                onClick={onClick}>Выполнить
+        </button>
+    </li>
 );
 
 export default Todo

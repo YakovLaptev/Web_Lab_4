@@ -10,7 +10,7 @@ export const addTodo = (text) => {
 
 export const deleteTodos = () => {
    return {
-      type: 'DELETE_TODO'
+      type: 'DELETE_TODOS'
    }
 };
 
@@ -21,9 +21,9 @@ export const filterTodos = (text) => {
    }
 };
 
-export const deleteOneTodo = (id) => {
+export const doneTodo = (id) => {
    return {
-      type: 'DELETE_ONE_TODO',
+      type: 'DONE_TODO',
       id
    }
 };
