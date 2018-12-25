@@ -1,28 +1,62 @@
 import todosReducer from './TodosReducer';
 
-describe('Тестирование редюсера', () => {
-   it('При ADD_TODO состояние должно увеличиться на один элемент', function () {
-      let state = [{
-         id: 1,
-         text: "Первая задача",
-         completed: false,
-         invisible: false
-      }];
-      let addTodoAction = {type: 'ADD_TODO', id: 2};
-      let newState = todosReducer(state, addTodoAction);
-      expect(newState.length).toEqual(2);
-   });
-   it('При FILTER_TODOS и отсутствии совпадений invisible элемента состояния должно быть true', function () {
-      let state = [
-         {
+describe('Reducer tests', () => {
+    test('test 1 (ADD_TODO)', () => {
+        let now = new Date(),
+            date = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDay() + " " +
+                now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+        let state = [{
             id: 1,
-            text: "Первая задача",
-            completed: false,
-            invisible: false
-         }
-      ];
-      let filterTodosAction = {type: 'FILTER_TODOS', text: "1 zadacha"};
-      let newState = todosReducer(state, filterTodosAction);
-      expect(newState[0].invisible).toEqual(true);
-   });
+            text: "Тестовая задача",
+            invisible: false,
+            done: false,
+            tenSeconds: false,
+            done_time: 0,
+            add_date: now,
+            date: date,
+        }];
+        let addTodoAction = {type: 'ADD_TODO', id: 2};
+        let newState = todosReducer(state, addTodoAction);
+        expect(newState.length).toEqual(2);
+    });
+    test('test 2 (FILTER_TODOS)', () => {
+        let now = new Date(),
+            date = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDay() + " " +
+                now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+        let state = [
+            {
+                id: 1,
+                text: "Тестовая задача",
+                invisible: false,
+                done: false,
+                tenSeconds: false,
+                done_time: 0,
+                add_date: now,
+                date: date,
+            }
+        ];
+        let filterTodosAction = {type: 'FILTER_TODOS', text: "поиск"};
+        let newState = todosReducer(state, filterTodosAction);
+        expect(newState[0].invisible).toEqual(true);
+    });
+    test('test 3 (DONE_TODO)', () => {
+        let now = new Date(),
+            date = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDay() + " " +
+                now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+        let state = [
+            {
+                id: 1,
+                text: "Тестовая задача",
+                invisible: false,
+                done: false,
+                tenSeconds: false,
+                done_time: 0,
+                add_date: now,
+                date: date,
+            }
+        ];
+        let doneTodosAction = {type: 'DONE_TODO', text: "поиск", id: 1};
+        let newState = todosReducer(state, doneTodosAction);
+        expect(newState[0].tenSeconds).toEqual(true);
+    });
 });

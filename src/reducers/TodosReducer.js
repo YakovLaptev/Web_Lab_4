@@ -34,8 +34,6 @@ const actions = (state, action) => {
             let index = assignedState.indexOf(foundElement[0]);
             let doneDate = new Date();
             doneDate = doneDate - foundElement[0].add_date;
-            console.log(foundElement);
-            console.log(index);
             if (doneDate < 10000) {
                 assignedState[index].tenSeconds = true;
             }
